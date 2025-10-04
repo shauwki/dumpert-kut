@@ -27,3 +27,4 @@ kuts/kuts-bak
 # OS / Editor specifieke bestanden
 .DS_Store
 .vscode/
+*.deb
