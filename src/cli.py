@@ -6,7 +6,7 @@ from parser import find_phrases
 from downloader import download_video
 from transcriber import transcribe_path
 from compiler import create_supercut
-import time # Nieuwe import
+import time 
 from rich.live import Live
 
 def setup_logging():
@@ -34,7 +34,7 @@ def zeg():
 
 @cli.command()
 @click.option('--directory', '-d', default='videos', help='De map die doorzocht moet worden.')
-@click.option('--create', '-k', is_flag=True, help='Maak de compilatievideo.') # -k alias toegevoegd
+@click.option('--create', '-k', is_flag=True, help='Maak de compilatievideo.') 
 @click.option('--pre', default=0.0, help='Seconden extra voor de start van de clip.')
 @click.option('--post', default=0.0, help='Seconden extra na het einde van de clip.')
 @click.argument('search_terms', nargs=-1)
