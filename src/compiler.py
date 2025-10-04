@@ -8,8 +8,8 @@ from rich.progress import Progress
 
 FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 
-console = Console()
-def create_supercut(clips, output_filename="dimper-supercut.mp4", pre=0.0, post=0.0):
+console = Console(force_terminal=True)
+def create_supercut(clips, output_filename="dumpert-kut.mp4", pre=0.0, post=0.0):
     """
     Maakt een supercut-video van een lijst met clips.
     """
@@ -66,7 +66,9 @@ def create_supercut(clips, output_filename="dimper-supercut.mp4", pre=0.0, post=
         for ts_file in sorted(ts_files):
             f.write(f"file '{os.path.basename(ts_file)}'\n")
     
-    final_output_path = os.path.join(project_root, output_filename)
+    output_dir = os.path.join(project_root, "kuts")
+    os.makedirs(output_dir, exist_ok=True)
+    final_output_path = os.path.join(output_dir, output_filename)
     concat_command = [
         'ffmpeg', '-y', '-hide_banner', '-loglevel', 'warning', '-f', 'concat', 
         '-safe', '0', '-i', concat_list_path, '-c', 'copy', final_output_path

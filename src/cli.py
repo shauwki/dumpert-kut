@@ -18,7 +18,7 @@ def setup_logging():
         filemode='w'
     )
     
-console = Console()
+console = Console(force_terminal=True)
 @click.group()
 def cli():
     """
@@ -83,10 +83,17 @@ def download(url, output_dir):
 
 @cli.command()
 @click.argument('path')
-@click.option('--prompt', default="reet, reten, reeten", help='Hint voor de transcribeer-engine.')
-def transcribe(path, prompt):
+@click.option('--prompt', default="reet, reten, reeten, rate, raten", help='Hint voor de transcribeer-engine.')
+@click.option(
+    '--mode',
+    default='standard',
+    type=click.Choice(['standard', 'demucs'], case_sensitive=False),
+    help="Transcriptie modus: 'standard' (snel, met VAD), 'demucs' (langzaamst, hoogste kwaliteit)."
+)
+def transcribe(path, prompt, mode):
     """Transcribeert een video of map met WhisperX."""
-    transcribe_path(path, prompt)
+    console.print(f"--> Transcriptie gestart in [cyan]{mode}[/cyan] modus...")
+    transcribe_path(path, prompt, mode)
 
 if __name__ == '__main__':
     cli()

@@ -1,2 +1,11 @@
-Click
+click
+rich
+# WhisperX van GitHub voor de laatste updates
 git+https://github.com/m-bain/whisperX.git
+# Demucs voor audio source separation
+demucs
+# Torch dependencies worden vaak apart gespecificeerd voor CUDA-ondersteuning, 
+# maar voor CPU is dit meestal voldoende.
+torch
+torchaudio
+torchvision

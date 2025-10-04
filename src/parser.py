@@ -6,7 +6,7 @@ import re
 import logging
 from rich.console import Console
 
-console = Console()
+console = Console(force_terminal=True)
 def find_phrases(root_dir, search_terms):
     """
     Zoekt naar volledige zinnen of losse woorden in .json-bestanden.
