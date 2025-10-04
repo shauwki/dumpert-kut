@@ -47,19 +47,16 @@ Transcribeert videobestanden naar JSON-transcripties met WhisperX. Ondersteunt v
     - `demucs`: Gebruikt `demucs` om eerst zang/spraak van muziek te scheiden, en transcribeert daarna alleen de zang. Dit is de langzaamste maar meest accurate methode voor video's met achtergrondmuziek.
 **Nou motte goed opletten cut:**
 - **Transcribeer een hele map (standaard modus):**
-    Bash
-    ```
+    ``` bash
     ./dumpert transcribe videos/
     ```
 - **Transcribeer een specifieke video met een prompt:**
-    Bash
-    ```
+    ``` bash
     ./dumpert transcribe videos/een_aflevering/mijn_video.mp4 --prompt "DumpertReeten, dumpert, reeten, raten"
     ```
     _(--prompt zijn dus woorden waar de transcriber meer op let, ofzoiets (initial prompt))_
 - **Transcribeer met Demucs voor hoge kwaliteit:**
-    Bash
-    ```
+    ``` bash
     ./dumpert transcribe videos/ --mode demucs
     ```
 _(Ik run transcribe met --mode demucs meestal op de achtergrond in een tweede terminal terwijl ik de tool gebruik. Over-time heb je meer en meer data, des te meer videos je download. Mijn GPU is niet zo krachtig, maar downloaden van 100GB videos duurde kort vergeleken met alles transcriben. Dat duurde dagen bij mij, dus succes!)_
@@ -73,18 +70,15 @@ Dit is de meest precieze functie. Het zoekt naar exacte woorden of zinnen en kni
 - `--create -k`: Genereer de compilatievideo (anders alleen een analyse).
 **Voorbeelden:**
 - **Zoek en analyseer precieze woordfragmenten:**
-    Bash    
-    ```
+    ``` bash
     ./dumpert kut "vijf reten"
     ```
 - **Genereer een compilatie van meerdere, exact geknipte termen, gerandomiseerd:**
-    Bash
-    ```
+    ``` bash
     ./dumpert kut "vijf reten" "twee reten" "drie raten" -k -r
     ```
 - **Creëer een video van een langere precieze zin:**
-    Bash
-    ```
+    ``` bash
     ./dumpert kut "ik geef het negen reten" -k
     ```
 
@@ -97,18 +91,15 @@ Vindt en compileert hele segmenten waarin een zoekterm voorkomt. Dit werkt in pr
 - `--create -k`: Genereer de compilatievideo (anders alleen een analyse).
 **Voorbeelden:**
 - **Zoek naar een term en analyseer de resultaten:**
-    Bash
-    ```
+    ``` bash
     ./dumpert zoek "tien reten"
     ```
 - **Creëer een compilatievideo van gevonden zinnen:**
-    Bash
-    ```
+    ``` bash
     ./dumpert zoek "vijf reten" -k
     ```
 - **Zoek en genereer met extra marge:**
-    Bash
-    ```
+    ``` bash
     ./dumpert zoek "ik geef het negen reten" -k --pre 0.5 --post 0.2
     ```
 
@@ -120,18 +111,15 @@ Bouwt een video-compilatie van een complete gegeven zin, woord-voor-woord, door 
 - `--create -k`: Genereer de compilatievideo (anders alleen een analyse). 
 **Voorbeelden:**
 - **Analyseer hoe vaak elk woord in de zin voorkomt:**
-    Bash
-    ```
+    ``` bash
     ./dumpert zeg "hallo jongen en welkom"
     ```
 - **Creëer een compilatie van de complete zin, opgebouwd uit losse woorden:**
-    Bash
-    ```
+    ``` bash
     ./dumpert zeg "hallo meisje en welkom" -k
     ```
 - **Genereer de zin met aangepaste fragmentlengtes:**
-    Bash
-    ```
+    ``` bash
     ./dumpert zeg "een twee drie vier hoedje van papier" -k --pre 0.1 --post 0.1
     ```
 
