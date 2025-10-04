@@ -23,7 +23,7 @@ Om Dumpert Kutter te installeren na het clonen van de repository, volg je deze s
 
 ## Configuratie
 De Dumpert Kutter-tool werkt met video's die in de `videos/` map in de root van het project worden geplaatst.<br/>
-* **Videobestanden:** De `setup.sh` haalt geen videobestanden voor je op. Je dient je `.mp4`-videobestanden handmatig in de `videos/` map te plaatsen (of in submappen daarbinnen).
+* **Videobestanden:** De `setup.sh` haalt geen videobestanden voor je op. Je dient je `.mp4`-videobestanden handmatig in de `videos/` map te plaatsen (of in submappen daarbinnen). Of de in-house downloader gebruiken.
 * **WhisperX Taal:** Het WhisperX-model is standaard afgestemd op Nederlands (`--language nl`), maar kan handmatig worden aangepast in `src/transcriber.py` als je met andere talen wilt werken.
 
 ## Usage
@@ -32,16 +32,16 @@ Alle commando's worden uitgevoerd via `./dumpert [commando] [opties] [argumenten
 
 ### `download`
 Download video's of playlists van YouTube (of andere ondersteunde bronnen) naar de `videos/` map.
-**Voorbeeld:** (dit is de dumpert-reeten playlist)
+**Voorbeeld:**
 ```bash
 ./dumpert download "[https://www.youtube.com/playlist?list=PLMe_6SSHyqcYh032ZieiNHW8bwusy7FPJ](https://www.youtube.com/playlist?list=PLMe_6SSHyqcYh032ZieiNHW8bwusy7FPJ)"
 ```
-_(De complete DumpertReeten-playlist van 100GB+ kun je uit de link hierboven vinden.)_
+_(Ik heb hier de link naar alle dumpert-reeten videos van Dumpert gebruikt :)_
 
 ### `transcribe`
 Transcribeert videobestanden naar JSON-transcripties met WhisperX. Ondersteunt verschillende modi voor kwaliteit versus snelheid.
 **Opties:**
-- `--prompt <tekst>`: Een hint voor de transcribeer-engine om de nauwkeurigheid te verbeteren (bijv. veelvoorkomende termen).
+- `--prompt <tekst>`: Een hint voor de transcribeer-engine om de nauwkeurigheid te verbeteren (bijv. veelvoorkomende termen als reten, reeten).
 - `--mode <modus>`: Kies de transcriptie-modus.
     - `standard` (standaard): Gebruikt de ingebouwde VAD (Voice Activity Detection) van WhisperX. Snel en vaak voldoende.
     - `demucs`: Gebruikt `demucs` om eerst zang/spraak van muziek te scheiden, en transcribeert daarna alleen de zang. Dit is de langzaamste maar meest accurate methode voor video's met achtergrondmuziek.
@@ -54,15 +54,15 @@ Transcribeert videobestanden naar JSON-transcripties met WhisperX. Ondersteunt v
 - **Transcribeer een specifieke video met een prompt:**
     Bash
     ```
-    ./dumpert transcribe videos/een_aflevering/mijn_video.mp4 --prompt "DumpertReeten, reeten, raten"
+    ./dumpert transcribe videos/een_aflevering/mijn_video.mp4 --prompt "DumpertReeten, dumpert, reeten, raten"
     ```
-    _(--prompt zijn woorden waar de transcriber op moet letten (initial prompt))_
+    _(--prompt zijn dus woorden waar de transcriber meer op let, ofzoiets (initial prompt))_
 - **Transcribeer met Demucs voor hoge kwaliteit:**
     Bash
     ```
     ./dumpert transcribe videos/ --mode demucs
     ```
-Ik pak meestal een tweede terminal en run daar de transcriber op achtergrond, met --mode demucs. Dan kun je zoeken en kutten terwijl videos getranscribed worden en je videos/ map vullen met meer data om mee te kutten.
+_(Ik run transcribe met --mode demucs meestal op de achtergrond in een tweede terminal terwijl ik de tool gebruik. Over-time heb je meer en meer data, des te meer videos je download. Mijn GPU is niet zo krachtig, maar downloaden van 100GB videos duurde kort vergeleken met alles transcriben. Dat duurde dagen bij mij, dus succes!)_
 
 ### `kut`
 Dit is de meest precieze functie. Het zoekt naar exacte woorden of zinnen en knipt die chirurgisch uit de video's, met respect voor de exacte start- en eindtijden van die specifieke woorden.
@@ -89,7 +89,7 @@ Dit is de meest precieze functie. Het zoekt naar exacte woorden of zinnen en kni
     ```
 
 ### `zoek`
-Vindt en compileert hele segmenten waarin een zoekterm voorkomt.
+Vindt en compileert hele segmenten waarin een zoekterm voorkomt. Dit werkt in principe hetzelfde als kut, maar knipt niet zoals kut. Hierbij zul je een soortgelijke resultaat krijgen, maar bij sommige clips krijg je nog een comment voor of na je zoekterm. Ook leuke resultaten. _Let op: geen randomizer, komt misschien ooit n keer._
 **Opties:**
 - `--directory -d <pad>`: De map om te doorzoeken (standaard: `videos/`).
 - `--pre <seconden>`: Voeg extra seconden toe vóór de start van de clip.
@@ -113,7 +113,7 @@ Vindt en compileert hele segmenten waarin een zoekterm voorkomt.
     ```
 
 ### `zeg`
-Bouwt een video-compilatie van een complete zin, woord-voor-woord, door losse woorden uit de videobibliotheek samen te voegen. Het maximale aantal zinnen dat kan worden opgebouwd, wordt bepaald door het minst gevonden woord (de "zwakste schakel").
+Bouwt een video-compilatie van een complete gegeven zin, woord-voor-woord, door losse woorden uit de videobibliotheek samen te voegen. Het maximale aantal zinnen dat kan worden opgebouwd, wordt bepaald door het minst gevonden aantal woorden uit de gegeven zin (de "zwakste schakel"). _Deze functie moet ik nog verbeteren. Duurt altijd lang als je veel resultaten hebt. Dus probeer niche woorden te gebruiken voor snel resultaat, ook al heb je veeel transcription._
 **Opties:**
 - `--pre <seconden>`: Voeg extra seconden toe vóór de start van elk woordfragment.
 - `--post <seconden>`: Voeg extra seconden toe ná het einde van elk woordfragment.
@@ -127,20 +127,20 @@ Bouwt een video-compilatie van een complete zin, woord-voor-woord, door losse wo
 - **Creëer een compilatie van de complete zin, opgebouwd uit losse woorden:**
     Bash
     ```
-    ./dumpert zeg "hallo jongen en welkom" -k
+    ./dumpert zeg "hallo meisje en welkom" -k
     ```
 - **Genereer de zin met aangepaste fragmentlengtes:**
     Bash
     ```
-    ./dumpert zeg "een twee drie vier" -k --pre 0.1 --post 0.1
+    ./dumpert zeg "een twee drie vier hoedje van papier" -k --pre 0.1 --post 0.1
     ```
 
 ## Contact
-Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar alshauwki@gmail.com.
+Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@gmail.com](mailto:alshauwki@gmail.com?subject=Dumpert%20Kutter&body=Jo%20maat,%20).
 ## Mijn Setup
 - **CPU:** AMD Ryzen 7 1800X
 - **RAM:** 16.0 GB 3.60 GHz
-- **GPU:** NVIDIA GeForce GTX 1660 Ti (6 GB)
-- **OS:** 64-bit operating system, x64-based processor (Ubuntu 24.04 LTS)
+- **GPU:** NVIDIA GeForce GTX 1660 Ti (6 GB)<-- die 6GB was m'n limiet op deze GPU. Echter, snel genoeg voor mij)
+- **OS:** x64-based processor (Ubuntu 24.04 LTS)
     
-**Let op:** Deze tool kan veel resources verbruiken, met name de transcriptie- en demucs-stappen. Zorg voor een krachtig systeem (bij voorkeur met een goede GPU) voor de beste prestaties. De tool is ontwikkeld op Linux, maar zou op de meeste UNIX-achtige systemen (zoals macOS) moeten werken.
+**Let op:** Deze tool kan veel resources verbruiken, met name de transcriptie- en demucs-stappen. Zorg voor een krachtig systeem (bij voorkeur met een goede GPU) voor de beste prestaties. De tool is ontwikkeld op Linux, maar zou op de meeste UNIX-achtige systemen (zoals macOS met M-chip) moeten werken. Maar mijn M1 MBpro was traag. As of now, moet ik nog testen hoe ffmpeg het doet met compileren. Transcriberen kon ik in mijn geval over laten aan mijn broertjes oude game-pc. Ik moet nog 230/438-ish afleveringen transcriberen. 
