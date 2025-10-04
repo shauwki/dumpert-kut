@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.venv/
+
+# Log en data bestanden
+log.txt
+dimper_supercut_data.csv
+
+# Media bestanden - negeer alle video/audio bestanden
+*.mp4
+*.wav
+*.ts
+dimper-supercut.mp4
+
+# Tijdelijke compilatie bestanden
+temp_clips/
+concat_list.txt
+
+# OS / Editor specifieke bestanden
+.DS_Store
+.vscode/
