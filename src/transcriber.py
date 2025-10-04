@@ -14,8 +14,6 @@ def _run_transcription_on_file(video_file, prompt):
     wav_file = os.path.join(dirname, f"{filename_no_ext}.wav")
 
     print(f"-> Start verwerking van: {os.path.basename(video_file)}")
-    
-    # Stap 1: Audio extraheren met ffmpeg
     print("[1/2] Audio extraheren...")
     ffmpeg_command = [
         'ffmpeg', '-i', video_file, '-vn', '-ar', '16000', '-ac', '1',
@@ -23,7 +21,6 @@ def _run_transcription_on_file(video_file, prompt):
     ]
     subprocess.run(ffmpeg_command, check=True)
 
-    # Stap 2: Transcriberen met WhisperX
     print("[2/2] Transcriberen met WhisperX...")
     whisperx_command = [
         'whisperx', wav_file, '--model', 'medium', '--language', 'nl',
@@ -36,7 +33,6 @@ def _run_transcription_on_file(video_file, prompt):
 
     subprocess.run(whisperx_command, check=True)
 
-    # Stap 3: Opruimen
     os.remove(wav_file)
     print(f"-> Verwerking van {os.path.basename(video_file)} is klaar.")
 
@@ -76,7 +72,6 @@ def transcribe_path(target_path, prompt):
                     _run_transcription_on_file(video_file, prompt)
                 except subprocess.CalledProcessError as e:
                     print(f"Fout bij verwerken van {os.path.basename(video_file)}: {e}", file=sys.stderr)
-                    # We gaan door met de volgende video, ook als er een mislukt
                     continue
         print("--- BATCH TRANSCRIPTIE KLAAR ---")
     else:

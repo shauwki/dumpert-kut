@@ -12,7 +12,6 @@ def find_phrases(root_dir, search_terms):
     Zoekt naar volledige zinnen of losse woorden in .json-bestanden.
     """
     master_list = []
-    # Dit gaat nu naar log.txt
     logging.info(f"Zoeken naar: {', '.join(f'\"{t}\"' for t in search_terms)}")
 
     json_files = [os.path.join(subdir, file) 
@@ -21,7 +20,6 @@ def find_phrases(root_dir, search_terms):
 
     from rich.progress import track
     for json_path in track(json_files, description="[green]Scannen..."):
-        # Dit gaat nu naar log.txt
         logging.info(f"Scannen: {os.path.basename(json_path)}")
         
         video_path = json_path.replace('.json', '.mp4')
@@ -46,7 +44,7 @@ def find_phrases(root_dir, search_terms):
                 if json_phrase_words == phrase_words:
                     start_word = all_words[i]
                     end_word = all_words[i + len(phrase_words) - 1]
-                    
+
                     if 'start' in start_word and 'end' in end_word:
                         master_list.append({
                             'video_path': video_path,

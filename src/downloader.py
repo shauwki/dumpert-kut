@@ -2,9 +2,7 @@
 import subprocess
 import os
 
-# Het pad naar de yt-dlp executable. 
-# We kunnen dit later flexibeler maken, maar voor nu is dit prima.
-YT_DLP_EXEC_PATH = os.path.join(os.getcwd(), 'vendor/yt-dlp/yt-dlp_linux') # Pas aan als je macOS gebruikt
+YT_DLP_EXEC_PATH = os.path.join(os.getcwd(), 'vendor/yt-dlp/yt-dlp_linux')
 
 def download_video(url, output_dir):
     """
@@ -18,10 +16,8 @@ def download_video(url, output_dir):
         print(f"Fout: yt-dlp niet gevonden op: {YT_DLP_EXEC_PATH}")
         return False
 
-    # Zorg ervoor dat de output directory bestaat
     os.makedirs(output_dir, exist_ok=True)
 
-    # Dit is de Python-vertaling van je yt-dlp commando
     command = [
         YT_DLP_EXEC_PATH,
         '-f', 'bv[ext=mp4]+ba[ext=m4a]/b[ext=mp4]',

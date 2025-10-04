@@ -3,7 +3,6 @@ import subprocess
 import os
 import shutil
 
-# Pad naar het lettertype, dit kunnen we later ook een optie maken.
 FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 
 def create_supercut(clips, output_filename="dimper-supercut.mp4", pre=0.0, post=0.0):
