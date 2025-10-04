@@ -5,19 +5,19 @@ Dit genereert dumpert videos op basis van meegegeven termen of zinnen. Ik maak n
 Voor nu kun je de setup.sh runnen. Dit zet de hele omgeving voor je op. (misschien eerst chmod +x setup.sh runnen)  
 
 Vervolgens kun je alle videos downloaden. Dat kost je 100GB+-  
-Dit doe je met: ./dimper downloade <url video of een hele playlist url>   
+Dit doe je met: ./dimper download [url video of een hele playlist url] 
 (alle dumpert videos(100GB): https://www.youtube.com/watch?v=ykpYKOnzgG4&list=PLMe_6SSHyqcYh032ZieiNHW8bwusy7FPJ) (not promoted, verveelde me en begon aan dit sideprojects, maar wilde het alsnog delen) 
   
 Alles word in videos/ gezet. Daar staan nu mijn videobestanden in (zonder .mp4 bestanden die de 100GB zijn, moet je ff zelf downloaden)  
 
 ## TRANSCRIBEREN
 Als je alle video bestanden hebt moeten we transcriberen. Dat doen we met WhisperX (van openai, met een touch)  
-./dimper transcribe videos/ <hier geef je de videos folder mee en transcriberen begint>  
+./dimper transcribe videos/ [hier geef je de videos folder mee en transcriberen begint] 
 Het zoekt alle mappen die nog niet getranscribeerd zijn.  
   
 ## USAGE
 Nu kun je dus superkuts maken (cuts, pun inserted yada yada)   
-./dimper zoek "tien reten" <nu zoekt het programma naar alle segmenten in alle videos waar "tien reten" wordt gezegd>  
+./dimper zoek "tien reten" [nu zoekt het programma naar alle segmenten in alle videos waar "tien reten" wordt gezegd]  
   
 als je nu:  
 ./dimper zoek "tien reten" -k runt dan krijg je een compilatie clip van je gezochte termen.   
