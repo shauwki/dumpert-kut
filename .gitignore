@@ -13,6 +13,8 @@ dimper_supercut_data.csv
 
 # Media bestanden - negeer alle video/audio bestanden
 *.mp4
+*.mp4.part
+*.part
 *.wav
 *.ts
 dimper-supercut.mp4
