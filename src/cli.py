@@ -1,14 +1,15 @@
 # src/cli.py
-import click, os
+import os
+import time 
+import click
 import logging 
+import random
+from rich.live import Live
 from rich.console import Console 
-from parser import find_phrases, build_word_database
+from compiler import create_supercut
 from downloader import download_video
 from transcriber import transcribe_path
-from compiler import create_supercut
-from rich.live import Live
-import random
-import time 
+from parser import find_phrases, build_word_database, find_precise_clips
 
 def setup_logging():
     """Configureert logging om naar een bestand te schrijven."""
@@ -23,7 +24,7 @@ console = Console(force_terminal=True)
 @click.group()
 def cli():
     """
-    Dimper is een tool voor het downloaden, transcriberen en compileren van videoclips.
+    dumpert is een tool voor het downloaden, transcriberen en compileren van videoclips.
     """
     setup_logging()
     pass
@@ -119,6 +120,37 @@ def zoek(directory, create, pre, post, search_terms):
     console.print(f"--> [bold green]✓ {len(results)}[/bold green] resultaten gevonden!")
     if create:
         create_supercut(results, pre=pre, post=post)
+
+@cli.command()
+@click.option('--pre', default=0.0, help='Seconden extra voor de start van de clip.')
+@click.option('--post', default=0.0, help='Seconden extra na het einde van de clip.')
+@click.option('--randomize', '-r', is_flag=True, help='Schud de gevonden clips in willekeurige volgorde.')
+@click.option('--create', '-k', is_flag=True, help='Maak de compilatievideo.') 
+@click.argument('search_terms', nargs=-1)
+def kut(pre, post, randomize, create, search_terms):
+    """Zoekt en compileert direct een video van exacte woorden/zinnen."""
+    if not search_terms:
+        console.print("[red]Fout: Geen zoektermen opgegeven.[/red]")
+        return
+
+    # Gebruik de nieuwe 'chirurgische' parser
+    results = find_precise_clips('videos', list(search_terms))
+
+    if not results:
+        console.print("[yellow]Geen resultaten gevonden.[/yellow]")
+        return
+    
+    console.print(f"--> [bold green]✓ {len(results)}[/bold green] precieze clips gevonden!")
+    
+    if create:
+        if randomize:
+            console.print("-> Clips worden in willekeurige volgorde geplaatst...")
+            random.shuffle(results)
+            logging.info("Clip-volgorde is willekeurig gemaakt.")
+
+        create_supercut(results, output_filename="kut-compilatie.mp4", pre=pre, post=post)
+    else:
+        console.print("\n-> Gebruik de [bold cyan]-k[/bold cyan] vlag om de video te genereren.")
 
 @cli.command()
 @click.argument('url')

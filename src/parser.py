@@ -109,20 +109,14 @@ def build_word_database(root_dir):
             try: data = json.load(f)
             except json.JSONDecodeError: continue
         
-        # Haal alle woorden uit alle segmenten
         all_words_in_file = [word for segment in data.get('segments', []) for word in segment.get('words', [])]
         
         for word_info in all_words_in_file:
-            # We hebben 'start' en 'end' nodig voor een geldige clip
             if 'word' in word_info and 'start' in word_info and 'end' in word_info:
-                # Normaliseer het woord: kleine letters en ontdaan van leestekens
                 word = word_info['word'].strip(".,!?").lower()
                 if not word: continue
-                
-                # Voeg toe aan de database
                 if word not in word_db:
                     word_db[word] = []
-                
                 word_db[word].append({
                     'video_path': video_path,
                     'start_timestamp': word_info['start'],
@@ -132,3 +126,54 @@ def build_word_database(root_dir):
 
     console.print(f"--> [bold green]✓ Database gebouwd met {len(word_db)} unieke woorden.[/bold green]")
     return word_db
+
+def find_precise_clips(root_dir, search_terms):
+    """
+    Zoekt naar termen in segmenten en retourneert de PRECIEZE start/end tijden
+    van de gevonden woorden binnen dat segment.
+    """
+    master_list = []
+    console.print("-> [cyan]Zoekmethode: Chirurgisch (precisie)[/cyan]")
+    
+    json_files = [os.path.join(subdir, file) 
+                  for subdir, _, files in os.walk(root_dir) 
+                  for file in files if file.endswith('.json')]
+
+    for json_path in track(json_files, description="[green]Scannen..."):
+        logging.info(f"Scannen (precisie-modus): {os.path.basename(json_path)}")
+        video_path = json_path.replace('.json', '.mp4')
+        if not os.path.exists(video_path): continue
+
+        with open(json_path, 'r', encoding='utf-8') as f:
+            try: data = json.load(f)
+            except json.JSONDecodeError: continue
+
+        for segment in data.get('segments', []):
+            segment_text = segment.get('text', '').strip().lower()
+            segment_words = segment.get('words', [])
+            if not segment_words: continue
+
+            for term in search_terms:
+                # 1. Controleer of de term in de tekst van het segment voorkomt
+                if term.lower() in segment_text:
+                    term_words = term.lower().split()
+                    
+                    # 2. Zoek de precieze woord-objecten op binnen dit segment
+                    for i in range(len(segment_words) - len(term_words) + 1):
+                        # Pak een stukje van de woordenlijst om te vergelijken
+                        phrase_to_check = [w.get('word', '').strip(".,!?").lower() for w in segment_words[i:i+len(term_words)]]
+
+                        if phrase_to_check == term_words:
+                            # We hebben een match!
+                            start_word_obj = segment_words[i]
+                            end_word_obj = segment_words[i + len(term_words) - 1]
+
+                            if 'start' in start_word_obj and 'end' in end_word_obj:
+                                master_list.append({
+                                    'video_path': video_path,
+                                    'start_timestamp': start_word_obj['start'],
+                                    'end_timestamp': end_word_obj['end'],
+                                    'found_phrase': term
+                                })
+                            break # Ga naar de volgende term, we hebben deze gevonden in dit segment
+    return master_list

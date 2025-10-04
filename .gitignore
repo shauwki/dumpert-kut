@@ -9,7 +9,7 @@ venv/
 
 # Log en data bestanden
 log.txt
-dimper_supercut_data.csv
+dumpert_supercut_data.csv
 
 # Media bestanden - negeer alle video/audio bestanden
 *.mp4
@@ -17,7 +17,7 @@ dimper_supercut_data.csv
 *.part
 *.wav
 *.ts
-dimper-supercut.mp4
+dumpert-supercut.mp4
 
 # Tijdelijke compilatie bestanden
 temp_clips/

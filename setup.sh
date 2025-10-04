@@ -1,5 +1,5 @@
 #!/bin/env bash
-# Dit script zet de volledige Dimper-omgeving op na een git clone.
+# Dit script zet de volledige dumpert-omgeving op na een git clone.
 
 # Stop on first error
 set -e
@@ -8,7 +8,7 @@ set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd "$SCRIPT_DIR"
 
-echo "--- Dimper Setup Script ---"
+echo "--- dumpert Setup Script ---"
 
 # --- Stap 1: Systeemafhankelijkheden controleren ---
 echo "[1/4] Controleren op benodigde software (git, python3, ffmpeg)..."
@@ -45,7 +45,7 @@ echo "      ... installatie van dependencies voltooid."
 
 # --- Stap 4: Scripts uitvoerbaar maken ---
 echo "[4/4] Scripts uitvoerbaar maken..."
-chmod +x dimper
+chmod +x dumpert
 # Maak ook de yt-dlp binaries uitvoerbaar
 chmod +x vendor/yt-dlp/yt-dlp_linux
 chmod +x vendor/yt-dlp/yt-dlp_macos
@@ -58,5 +58,5 @@ echo "Om de omgeving te activeren, gebruik:"
 echo "source venv/bin/activate"
 echo ""
 echo "Om de applicatie te starten, gebruik:"
-echo "./dimper --help"
+echo "./dumpert --help"
 echo ""
