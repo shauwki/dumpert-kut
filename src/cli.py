@@ -121,11 +121,6 @@ def zoek(directory, create, pre, post, search_terms):
         create_supercut(results, pre=pre, post=post)
 
 @cli.command()
-def kut():
-    """Een snelkoppeling die direct een compilatievideo maakt."""
-    click.echo("Kut-commando wordt uitgevoerd...")
-
-@cli.command()
 @click.argument('url')
 @click.option('--output-dir', default='videos', help='Map om video\'s in op te slaan.')
 def download(url, output_dir):
