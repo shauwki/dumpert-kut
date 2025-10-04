@@ -34,7 +34,7 @@ Alle commando's worden uitgevoerd via `./dumpert [commando] [opties] [argumenten
 Download video's of playlists van YouTube (of andere ondersteunde bronnen) naar de `videos/` map.
 **Voorbeeld:**
 ```bash
-./dumpert download "[https://www.youtube.com/playlist?list=PLMe_6SSHyqcYh032ZieiNHW8bwusy7FPJ](https://www.youtube.com/playlist?list=PLMe_6SSHyqcYh032ZieiNHW8bwusy7FPJ)"
+./dumpert download "https://www.youtube.com/playlist?list=PLMe_6SSHyqcYh032ZieiNHW8bwusy7FPJ"
 ```
 _(Ik heb hier de link naar alle dumpert-reeten videos van Dumpert gebruikt :)_
 
@@ -44,7 +44,8 @@ Transcribeert videobestanden naar JSON-transcripties met WhisperX. Ondersteunt v
 - `--prompt <tekst>`: Een hint voor de transcribeer-engine om de nauwkeurigheid te verbeteren (bijv. veelvoorkomende termen als reten, reeten).
 - `--mode <modus>`: Kies de transcriptie-modus.
     - `standard` (standaard): Gebruikt de ingebouwde VAD (Voice Activity Detection) van WhisperX. Snel en vaak voldoende.
-    - `demucs`: Gebruikt `demucs` om eerst zang/spraak van muziek te scheiden, en transcribeert daarna alleen de zang. Dit is de langzaamste maar meest accurate methode voor video's met achtergrondmuziek.
+    - `demucs`: Gebruikt `demucs` om eerst zang/spraak van muziek te scheiden, en transcribeert daarna alleen de zang. Dit is de langzaamste maar meest accurate methode voor video's met achtergrondmuziek.  
+
 **Nou motte goed opletten cut:**
 _(Alles wat ik tot nu toe heb getranscribeerd upload ik bij iedere push mee dan hoef jij het niet te doen. Ik heb er aardig veel, dus jij hoeft alleen de videos te downloaden met deze exacte cmd: ./dumpert download [link van dumpertreeten videos])_
 - **Transcribeer een hele map (standaard modus):**
