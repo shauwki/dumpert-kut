@@ -15,11 +15,11 @@ Als je alle video bestanden hebt moeten we transcriberen. Dat doen we met Whispe
 Het zoekt alle mappen die nog niet getranscribeerd zijn.
 
 ## USAGE
-Nu kun je dus superkuts maken (cuts, pun inserted yada yada).
+Nu kun je dus superkuts maken (cuts, pun inserted yada yada)  
 ./dimper zoek "tien reten" <nu zoekt het programma naar alle segmenten in alle videos waar "tien reten" wordt gezegd>
 
 als je nu:
-./dimper zoek "tien reten" -k runt dan krijg je een compilatie clip van je gezochte termen. 
+./dimper zoek "tien reten" -k runt dan krijg je een compilatie clip van je gezochte termen.   
 je kunt ook [--pre 0.1 --post 0.12] meegeven als je stukjes voor en na de clip wil meenemen.
 
 Ja dit werkt op alle videos, dus niet alleen dumpert videos. Ik zou zeggen be creative. 
