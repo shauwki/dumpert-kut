@@ -17,7 +17,7 @@ def _run_transcription_on_file(video_file, prompt, mode):
     dirname = os.path.dirname(video_file)
     filename_no_ext = os.path.splitext(os.path.basename(video_file))[0]
     
-    temp_wav_file = os.path.join(dirname, f"{filename_no_ext}_temp.wav")
+    temp_wav_file = os.path.join(dirname, f"{filename_no_ext}.wav")
     target_audio_for_whisperx = temp_wav_file
     cleanup_paths = [temp_wav_file]
 

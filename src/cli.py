@@ -2,12 +2,13 @@
 import click, os
 import logging 
 from rich.console import Console 
-from parser import find_phrases
+from parser import find_phrases, build_word_database
 from downloader import download_video
 from transcriber import transcribe_path
 from compiler import create_supercut
-import time 
 from rich.live import Live
+import random
+import time 
 
 def setup_logging():
     """Configureert logging om naar een bestand te schrijven."""
@@ -28,9 +29,59 @@ def cli():
     pass
 
 @cli.command()
-def zeg():
+@click.argument('sentence')
+@click.option('--create', '-k', is_flag=True, help='Maak de compilatievideo.')
+@click.option('--pre', default=0.0, help='Seconden extra voor de start van de clip.')
+@click.option('--post', default=0.0, help='Seconden extra na het einde van de clip.')
+def zeg(sentence, create, pre, post):
     """Bouwt een zin woord-voor-woord uit de videobibliotheek."""
-    click.echo("Zeg-commando wordt uitgevoerd...")
+    
+    word_db = build_word_database('videos')
+    words_to_find = sentence.lower().split()
+    if not words_to_find:
+        console.print("[red]Fout: Geen zin opgegeven.[/red]")
+        return
+
+    console.print(f"\n--- Analyse voor de zin: '[cyan]{sentence}[/cyan]' ---")
+    
+    available_clips = {}
+    min_count = float('inf')
+    limiting_word = ""
+
+    for word in words_to_find:
+        if word in word_db:
+            count = len(word_db[word])
+            console.print(f"- Woord '[green]{word}[/green]' -> {count} keer gevonden.")
+            available_clips[word] = word_db[word]
+            if count < min_count:
+                min_count = count
+                limiting_word = word
+        else:
+            console.print(f"- Woord '[red]{word}[/red]' -> NIET GEVONDEN in de database.")
+            console.print("\n[bold red]Kan de zin niet bouwen omdat een of meerdere woorden missen.[/bold red]")
+            return
+    console.print("--------------------")
+    # console.print(f"De zwakste schakel is '[yellow]{limiting_word}[/yellow]'.")
+    console.print(f"Er kunnen maximaal [bold green]{min_count}[/bold green] unieke zinnen worden gemaakt.")
+
+    if create:
+        if min_count == 0:
+            console.print("[red]Kan geen video maken omdat niet alle woorden gevonden zijn.[/red]")
+            return        
+        console.print(f"\nStarten met het bouwen van {min_count} zin(nen)...")
+        for word in available_clips:
+            random.shuffle(available_clips[word])
+        master_clip_plan = []
+        for i in range(min_count):
+            for word in words_to_find:
+                clip_to_add = available_clips[word][i]
+                master_clip_plan.append(clip_to_add)
+        create_supercut(
+            master_clip_plan, 
+            output_filename="dumpert-komp.mp4", 
+            pre=pre, 
+            post=post
+        )
 
 @cli.command()
 @click.option('--directory', '-d', default='videos', help='De map die doorzocht moet worden.')
