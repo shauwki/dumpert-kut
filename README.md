@@ -29,8 +29,8 @@ geen zin meer om te typen, hier zul je het even mee moeten doen. stuur me mailtj
 alshauwki@gmail.com
 
 # MIJN SETUP
-CPU:  AMD Ryzen 7 1800X Eight-Core Processor  
-RAMP: 16.0 GB 3.60 GHz
-GPU:  NVIDIA GeForce GTX 1660 Ti (6 GB)
-64-bit operating system, x64-based processor
+CPU:  AMD Ryzen 7 1800X  
+RAMP: 16.0 GB 3.60 GHz  
+GPU:  NVIDIA GeForce GTX 1660 Ti (6 GB)  
+64-bit operating system, x64-based processor  
 Ik heb Ubuntu 24.04 LTS op mijn systeem, maar dit zou ook moeten werken op meeste UNIX system, zoals een macbook. Mind you: dit slurpt je resources, dus zorg voor een goede M1 of hoger of goede GPU met ubuntu ofzo.
