@@ -29,7 +29,7 @@ geen zin meer om te typen, hier zul je het even mee moeten doen. stuur me mailtj
 alshauwki@gmail.com
 
 # MIJN SETUP
-CPU:  AMD Ryzen 7 1800X Eight-Core Processor
+CPU:  AMD Ryzen 7 1800X Eight-Core Processor  
 RAMP: 16.0 GB 3.60 GHz
 GPU:  NVIDIA GeForce GTX 1660 Ti (6 GB)
 64-bit operating system, x64-based processor
