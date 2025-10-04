@@ -46,7 +46,7 @@ Transcribeert videobestanden naar JSON-transcripties met WhisperX. Ondersteunt v
     - `standard` (standaard): Gebruikt de ingebouwde VAD (Voice Activity Detection) van WhisperX. Snel en vaak voldoende.
     - `demucs`: Gebruikt `demucs` om eerst zang/spraak van muziek te scheiden, en transcribeert daarna alleen de zang. Dit is de langzaamste maar meest accurate methode voor video's met achtergrondmuziek.  
 
-_Alles wat ik tot nu toe heb getranscribeerd upload ik bij iedere push mee dan hoef jij het niet te doen. Ik heb er aardig veel, dus jij hoeft alleen de videos te downloaden met deze exacte cmd: ./dumpert download [link van dumpertreeten videos]_
+_Alles wat ik tot nu toe heb getranscribeerd upload ik bij iedere push mee dan hoef jij het niet te doen. Ik heb er aardig veel, dus jij hoeft alleen de videos te downloaden met deze exacte cmd: `./dumpert download [link van dumpertreeten videos]`_
 - **Transcribeer een hele map (standaard modus):**
     ``` bash
     ./dumpert transcribe videos/
