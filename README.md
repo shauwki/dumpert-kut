@@ -140,7 +140,7 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 ```bash
 ./dumpert kut "hallo allemaal" "welkom allemaal" "hallo" -k -r
 ```
-[![Halloo](https://img.youtube.com/vi/https://youtu.be/ZWEb3xTyTRA/0.jpg)](https://www.youtube.com/watch?v=[ID](https://youtu.be/ZWEb3xTyTRA))
+[![Halloo](https://img.youtube.com/vi/ZWEb3xTyTRA/0.jpg)](https://www.youtube.com/watch?v=ZWEb3xTyTRA)
 ```bash
 ./dumpert kut "dumpertreten" -k -r
 ```
