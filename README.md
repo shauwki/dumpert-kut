@@ -138,6 +138,10 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 # Voorbeeld resultaten
 
 ```bash
+./dumpert kut "hallo allemaal" "welkom allemaal" "hallo" -k -r
+```
+[![Halloo](https://img.youtube.com/vi/https://youtu.be/ZWEb3xTyTRA/0.jpg)](https://www.youtube.com/watch?v=[ID](https://youtu.be/ZWEb3xTyTRA))
+```bash
 ./dumpert kut "dumpertreten" -k -r
 ```
 [![Dumpert Reeten voorbeeld output](https://img.youtube.com/vi/7BvqmrFZrHE/0.jpg)](https://www.youtube.com/watch?v=7BvqmrFZrHE)
@@ -145,6 +149,10 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 ./dumpert zeg "nul reten"
 ```
 [![nul reten voor mijn voorbeelden:p](https://img.youtube.com/vi/cYIxwT0rwqk/0.jpg)](https://www.youtube.com/watch?v=cYIxwT0rwqk)
+<!-- ```bash
+./dumpert kut "vijf reten" "vijf rate" "vijf raten" "vijf reeten" -kr
+```
+[![lange compilatie van 5 reeten](https://img.youtube.com/vi/ID/0.jpg)](https://www.youtube.com/watch?v=ID) -->
 ```bash
 ./dumpert kut "homo" -k -r
 ```
