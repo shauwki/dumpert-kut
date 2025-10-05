@@ -73,6 +73,7 @@ def find_phrases(root_dir, search_terms):
     json_files = [os.path.join(subdir, file) 
                   for subdir, _, files in os.walk(root_dir) 
                   for file in files if file.endswith('.json')]
+    
     results = _search_segments(json_files, search_terms)
     
     if not results:

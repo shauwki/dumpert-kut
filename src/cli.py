@@ -42,7 +42,6 @@ def zeg(sentence, create, pre, post):
     if not words_to_find:
         console.print("[red]Fout: Geen zin opgegeven.[/red]")
         return
-
     console.print(f"\n--- Analyse voor de zin: '[cyan]{sentence}[/cyan]' ---")
     
     available_clips = {}
