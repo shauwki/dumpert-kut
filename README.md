@@ -149,10 +149,10 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 ./dumpert zeg "nul reten"
 ```
 [![nul reten voor mijn voorbeelden:p](https://img.youtube.com/vi/cYIxwT0rwqk/0.jpg)](https://www.youtube.com/watch?v=cYIxwT0rwqk)
-<!-- ```bash
+```bash
 ./dumpert kut "vijf reten" "vijf rate" "vijf raten" "vijf reeten" -kr
 ```
-[![lange compilatie van 5 reeten](https://img.youtube.com/vi/ID/0.jpg)](https://www.youtube.com/watch?v=ID) -->
+[![lange compilatie van 5 reeten](https://img.youtube.com/vi/Z3BwtRlV1JI/0.jpg)](https://www.youtube.com/watch?v=Z3BwtRlV1JI)
 ```bash
 ./dumpert kut "homo" -k -r
 ```
