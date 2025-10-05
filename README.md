@@ -138,7 +138,7 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 # Voorbeeld resultaten
 
 ```bash
-./dumpert kut "hallo allemaal" "welkom allemaal" "hallo" -k -r
+./dumpert kut "hallo allemaal" "welkom allemaal" "hallo" -kr
 ```
 [![Halloo](https://img.youtube.com/vi/ZWEb3xTyTRA/0.jpg)](https://www.youtube.com/watch?v=ZWEb3xTyTRA)
 ```bash
