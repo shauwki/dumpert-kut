@@ -133,3 +133,19 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 - **OS:** x64-based processor (Ubuntu 24.04 LTS)
     
 **Let op:** Deze tool kan veel resources verbruiken, met name de transcriptie- en demucs-stappen. Zorg voor een krachtig systeem (bij voorkeur met een goede GPU) voor de beste prestaties. De tool is ontwikkeld op Linux, maar zou op de meeste UNIX-achtige systemen (zoals macOS met M-chip) moeten werken. Maar mijn M1 MBpro was traag. As of now, moet ik nog testen hoe ffmpeg het doet met compileren. Transcriberen kon ik in mijn geval over laten aan mijn broertjes oude game-pc. Ik moet nog 230/438-ish afleveringen transcriberen. 
+
+
+# Voorbeeld resultaten
+
+```bash
+    ./dumpert kut "dumpertreten" -k -r
+```
+[![Dumpert Reeten voorbeeld output](https://img.youtube.com/vi/7BvqmrFZrHE/0.jpg)](https://www.youtube.com/watch?v=7BvqmrFZrHE)
+```bash
+    ./dumpert zeg "nul reten"
+```
+[![nul reten voor mijn voorbeelden:p](https://img.youtube.com/vi/cYIxwT0rwqk/0.jpg)](https://www.youtube.com/watch?v=cYIxwT0rwqk)
+```bash
+    ./dumpert kut "homo" -k -r
+```
+[![homooooo, dit was een culturele keuze x ly](https://img.youtube.com/vi/PeWKg4v9n4k/0.jpg)](https://www.youtube.com/watch?v=PeWKg4v9n4k)

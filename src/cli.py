@@ -78,7 +78,7 @@ def zeg(sentence, create, pre, post):
                 master_clip_plan.append(clip_to_add)
         create_supercut(
             master_clip_plan, 
-            output_filename="dumpert-komp.mp4", 
+            output_filename="zeg-compilatie.mp4", 
             pre=pre, 
             post=post
         )
@@ -118,7 +118,7 @@ def zoek(directory, create, pre, post, search_terms):
             time.sleep(0.02) 
     console.print(f"--> [bold green]✓ {len(results)}[/bold green] resultaten gevonden!")
     if create:
-        create_supercut(results, pre=pre, post=post)
+        create_supercut(results, output_filename="zoek-compilatie.mp4", pre=pre, post=post)
 
 @cli.command()
 @click.option('--pre', default=0.0, help='Seconden extra voor de start van de clip.')
