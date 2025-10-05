@@ -140,12 +140,12 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 ```bash
     ./dumpert kut "dumpertreten" -k -r
 ```
-[![Dumpert Reeten voorbeeld output](https://img.youtube.com/vi/7BvqmrFZrHE/0.jpg)](https://www.youtube.com/watch?v=7BvqmrFZrHE)
+[![Dumpert Reeten voorbeeld output](https://img.youtube.com/vi/7BvqmrFZrHE/0.jpg)](https://www.youtube.com/watch?v=7BvqmrFZrHE){:target="_blank" rel="noopener"}
 ```bash
     ./dumpert zeg "nul reten"
 ```
-[![nul reten voor mijn voorbeelden:p](https://img.youtube.com/vi/cYIxwT0rwqk/0.jpg)](https://www.youtube.com/watch?v=cYIxwT0rwqk)
+[![nul reten voor mijn voorbeelden:p](https://img.youtube.com/vi/cYIxwT0rwqk/0.jpg)](https://www.youtube.com/watch?v=cYIxwT0rwqk){:target="_blank" rel="noopener"}
 ```bash
     ./dumpert kut "homo" -k -r
 ```
-[![homooooo, dit was een culturele keuze x ly](https://img.youtube.com/vi/PeWKg4v9n4k/0.jpg)](https://www.youtube.com/watch?v=PeWKg4v9n4k)
+[![homooooo, dit was een culturele keuze x ly](https://img.youtube.com/vi/PeWKg4v9n4k/0.jpg)](https://www.youtube.com/watch?v=PeWKg4v9n4k){:target="_blank" rel="noopener"}
