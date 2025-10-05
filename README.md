@@ -137,31 +137,37 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 
 # Voorbeeld resultaten
 
+[![Halloo](https://img.youtube.com/vi/ZWEb3xTyTRA/0.jpg)](https://www.youtube.com/watch?v=ZWEb3xTyTRA)
 ```bash
 ./dumpert kut "hallo allemaal" "welkom allemaal" "hallo" -kr
 ```
-[![Halloo](https://img.youtube.com/vi/ZWEb3xTyTRA/0.jpg)](https://www.youtube.com/watch?v=ZWEb3xTyTRA)
+-----
+[![Dumpert Reeten voorbeeld output](https://img.youtube.com/vi/7BvqmrFZrHE/0.jpg)](https://www.youtube.com/watch?v=7BvqmrFZrHE)
 ```bash
 ./dumpert kut "dumpertreten" -k -r
 ```
-[![Dumpert Reeten voorbeeld output](https://img.youtube.com/vi/7BvqmrFZrHE/0.jpg)](https://www.youtube.com/watch?v=7BvqmrFZrHE)
+-----
+[![nul reten voor mijn voorbeelden:p](https://img.youtube.com/vi/cYIxwT0rwqk/0.jpg)](https://www.youtube.com/watch?v=cYIxwT0rwqk)
 ```bash
 ./dumpert zeg "nul reten"
 ```
-[![nul reten voor mijn voorbeelden:p](https://img.youtube.com/vi/cYIxwT0rwqk/0.jpg)](https://www.youtube.com/watch?v=cYIxwT0rwqk)
+-----
+[![lange compilatie van 5 reeten](https://img.youtube.com/vi/Z3BwtRlV1JI/0.jpg)](https://www.youtube.com/watch?v=Z3BwtRlV1JI)
 ```bash
 ./dumpert kut "vijf reten" "vijf rate" "vijf raten" "vijf reeten" -kr
 ```
-[![lange compilatie van 5 reeten](https://img.youtube.com/vi/Z3BwtRlV1JI/0.jpg)](https://www.youtube.com/watch?v=Z3BwtRlV1JI)
+-----
+[![mixed reetings](https://img.youtube.com/vi/N4gVH1Bbh6M/0.jpg)](https://www.youtube.com/watch?v=N4gVH1Bbh6M)
 ```bash
 ./dumpert kut "nul reten" "een reet" "twee reten" "drie reten" "vier reten" "vijf reten" "nul reeten" "vier reeten" "vijf reeten" -kr --limit "25;100"
 ```
-[![mixed reetings](https://img.youtube.com/vi/N4gVH1Bbh6M/0.jpg)](https://www.youtube.com/watch?v=N4gVH1Bbh6M)
+-----
+[![homooooo, dit was een culturele keuze x ly](https://img.youtube.com/vi/PeWKg4v9n4k/0.jpg)](https://www.youtube.com/watch?v=PeWKg4v9n4k)
 ```bash
 ./dumpert kut "homo" -k -r
 ```
-[![homooooo, dit was een culturele keuze x ly](https://img.youtube.com/vi/PeWKg4v9n4k/0.jpg)](https://www.youtube.com/watch?v=PeWKg4v9n4k)
+-----
+[![thema bleef ff hangen, sorrry](https://img.youtube.com/vi/FD1iC_Hmnc8/0.jpg)](https://www.youtube.com/watch?v=FD1iC_Hmnc8)
 ```bash
 ./dumpert kut flikker -kr
 ```
-[![thema bleef ff hangen, sorrry](https://img.youtube.com/vi/FD1iC_Hmnc8/0.jpg)](https://www.youtube.com/watch?v=FD1iC_Hmnc8)
