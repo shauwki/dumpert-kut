@@ -157,3 +157,7 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 ./dumpert kut "homo" -k -r
 ```
 [![homooooo, dit was een culturele keuze x ly](https://img.youtube.com/vi/PeWKg4v9n4k/0.jpg)](https://www.youtube.com/watch?v=PeWKg4v9n4k)
+```bash
+./dumpert kut flikker -kr
+```
+[![thema bleef ff hangen, sorrry](https://img.youtube.com/vi/FD1iC_Hmnc8/0.jpg)](https://www.youtube.com/watch?v=FD1iC_Hmnc8)
