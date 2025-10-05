@@ -63,7 +63,7 @@ def zeg(sentence, create, pre, post):
     console.print("--------------------")
     console.print(f"De zwakste schakel is '[yellow]{limiting_word}[/yellow]'.")
     console.print(f"Er kunnen maximaal [bold green]{min_count}[/bold green] unieke zinnen worden gemaakt.")
-
+ 
     if create:
         if min_count == 0:
             console.print("[red]Kan geen video maken omdat niet alle woorden gevonden zijn.[/red]")
