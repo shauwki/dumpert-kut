@@ -138,14 +138,14 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 # Voorbeeld resultaten
 
 ```bash
-    ./dumpert kut "dumpertreten" -k -r
+./dumpert kut "dumpertreten" -k -r
 ```
 [![Dumpert Reeten voorbeeld output](https://img.youtube.com/vi/7BvqmrFZrHE/0.jpg)](https://www.youtube.com/watch?v=7BvqmrFZrHE)
 ```bash
-    ./dumpert zeg "nul reten"
+./dumpert zeg "nul reten"
 ```
 [![nul reten voor mijn voorbeelden:p](https://img.youtube.com/vi/cYIxwT0rwqk/0.jpg)](https://www.youtube.com/watch?v=cYIxwT0rwqk)
 ```bash
-    ./dumpert kut "homo" -k -r
+./dumpert kut "homo" -k -r
 ```
 [![homooooo, dit was een culturele keuze x ly](https://img.youtube.com/vi/PeWKg4v9n4k/0.jpg)](https://www.youtube.com/watch?v=PeWKg4v9n4k)
