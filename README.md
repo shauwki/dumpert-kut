@@ -105,7 +105,7 @@ Vindt en compileert hele segmenten waarin een zoekterm voorkomt. Dit werkt in pr
     ```
 
 ### `zeg`
-Bouwt een video-compilatie van een complete gegeven zin, woord-voor-woord, door losse woorden uit de videobibliotheek samen te voegen. Het maximale aantal zinnen dat kan worden opgebouwd, wordt bepaald door het minst gevonden aantal woorden uit de gegeven zin (de "zwakste schakel"). _Deze functie moet ik nog verbeteren. Duurt altijd lang als je veel resultaten hebt. Dus probeer niche woorden te gebruiken voor snel resultaat, ook al heb je veeel transcription._
+Bouwt een video-compilatie van een complete gegeven zin, woord-voor-woord, door losse woorden uit de videobibliotheek samen te voegen. Het maximale aantal zinnen dat kan worden opgebouwd, wordt bepaald door het minst gevonden aantal woorden uit de gegeven zin (de "zwakste schakel"). _Deze functie moet ik nog verbeteren. Duurt altijd lang als je veel resultaten hebt. Dus probeer niche woorden te gebruiken voor sneller? resultaat._
 **Opties:**
 - `--pre <seconden>`: Voeg extra seconden toe vóór de start van elk woordfragment.
 - `--post <seconden>`: Voeg extra seconden toe ná het einde van elk woordfragment.
