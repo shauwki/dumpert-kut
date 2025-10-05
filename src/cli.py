@@ -62,7 +62,7 @@ def zeg(sentence, create, pre, post):
             console.print("\n[bold red]Kan de zin niet bouwen omdat een of meerdere woorden missen.[/bold red]")
             return
     console.print("--------------------")
-    # console.print(f"De zwakste schakel is '[yellow]{limiting_word}[/yellow]'.")
+    console.print(f"De zwakste schakel is '[yellow]{limiting_word}[/yellow]'.")
     console.print(f"Er kunnen maximaal [bold green]{min_count}[/bold green] unieke zinnen worden gemaakt.")
 
     if create:
@@ -133,7 +133,6 @@ def kut(pre, post, randomize, create, search_terms):
         console.print("[red]Fout: Geen zoektermen opgegeven.[/red]")
         return
 
-    # Gebruik de nieuwe 'chirurgische' parser
     results = find_precise_clips('videos', list(search_terms))
 
     if not results:

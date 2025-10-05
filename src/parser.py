@@ -29,7 +29,7 @@ def _search_segments(json_files, search_terms):
                         'start_timestamp': segment['start'],
                         'end_timestamp': segment['end'],
                         'found_phrase': term,
-                        'context': segment_text # Extra context voor logging
+                        'context': segment_text
                     })
     return master_list
 
@@ -70,20 +70,15 @@ def find_phrases(root_dir, search_terms):
     Vindt zinnen door eerst op hele segmenten te zoeken en dan als fallback woord-voor-woord.
     """
     logging.info(f"Zoeken naar: {', '.join(f'\"{t}\"' for t in search_terms)}")
-
     json_files = [os.path.join(subdir, file) 
                   for subdir, _, files in os.walk(root_dir) 
                   for file in files if file.endswith('.json')]
-
-    # Probeer eerst de snelle en accurate segment-zoekopdracht
     results = _search_segments(json_files, search_terms)
-
-    # Als dat niets oplevert, gebruik de fallback
+    
     if not results:
         console.print("[yellow]Niks gevonden in segmenten, fallback naar woord-voor-woord zoeken...[/yellow]")
         logging.warning("Niks gevonden in segmenten, fallback naar woord-voor-woord zoeken.")
         results = _search_words(json_files, search_terms)
-    
     return results
 
 def build_word_database(root_dir):
@@ -95,20 +90,18 @@ def build_word_database(root_dir):
         dict: Een dictionary zoals {'woord': [{'video_path': ..., 'start': ..., 'end': ...}, ...]}
     """
     word_db = {}
-    console.print("-> Woorden-database aan het bouwen...")
-    
+    console.print("-> Woorden-database aan het bouwen...")    
     json_files = [os.path.join(subdir, file) 
                   for subdir, _, files in os.walk(root_dir) 
                   for file in files if file.endswith('.json')]
-
+   
     for json_path in track(json_files, description="[green]Woorden indexeren..."):
         video_path = json_path.replace('.json', '.mp4')
         if not os.path.exists(video_path): continue
-
         with open(json_path, 'r', encoding='utf-8') as f:
             try: data = json.load(f)
             except json.JSONDecodeError: continue
-        
+       
         all_words_in_file = [word for segment in data.get('segments', []) for word in segment.get('words', [])]
         
         for word_info in all_words_in_file:
@@ -121,7 +114,7 @@ def build_word_database(root_dir):
                     'video_path': video_path,
                     'start_timestamp': word_info['start'],
                     'end_timestamp': word_info['end'],
-                    'found_phrase': word # Zorgt voor compatibiliteit met de compiler
+                    'found_phrase': word
                 })
 
     console.print(f"--> [bold green]✓ Database gebouwd met {len(word_db)} unieke woorden.[/bold green]")
@@ -154,20 +147,14 @@ def find_precise_clips(root_dir, search_terms):
             if not segment_words: continue
 
             for term in search_terms:
-                # 1. Controleer of de term in de tekst van het segment voorkomt
+
                 if term.lower() in segment_text:
                     term_words = term.lower().split()
-                    
-                    # 2. Zoek de precieze woord-objecten op binnen dit segment
                     for i in range(len(segment_words) - len(term_words) + 1):
-                        # Pak een stukje van de woordenlijst om te vergelijken
                         phrase_to_check = [w.get('word', '').strip(".,!?").lower() for w in segment_words[i:i+len(term_words)]]
-
                         if phrase_to_check == term_words:
-                            # We hebben een match!
                             start_word_obj = segment_words[i]
                             end_word_obj = segment_words[i + len(term_words) - 1]
-
                             if 'start' in start_word_obj and 'end' in end_word_obj:
                                 master_list.append({
                                     'video_path': video_path,
@@ -175,5 +162,5 @@ def find_precise_clips(root_dir, search_terms):
                                     'end_timestamp': end_word_obj['end'],
                                     'found_phrase': term
                                 })
-                            break # Ga naar de volgende term, we hebben deze gevonden in dit segment
+                            break
     return master_list
