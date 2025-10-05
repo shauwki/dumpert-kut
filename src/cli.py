@@ -34,7 +34,8 @@ def cli():
 @click.option('--create', '-k', is_flag=True, help='Maak de compilatievideo.')
 @click.option('--pre', default=0.0, help='Seconden extra voor de start van de clip.')
 @click.option('--post', default=0.0, help='Seconden extra na het einde van de clip.')
-def zeg(sentence, create, pre, post):
+@click.option('--name', '-n', default="zeg", help='Geef een aangepaste bestandsnaam (zonder .mp4).') 
+def zeg(sentence, create, pre, post, name):
     """Bouwt een zin woord-voor-woord uit de videobibliotheek."""
     
     word_db = build_word_database('videos')
@@ -67,7 +68,11 @@ def zeg(sentence, create, pre, post):
     if create:
         if min_count == 0:
             console.print("[red]Kan geen video maken omdat niet alle woorden gevonden zijn.[/red]")
-            return        
+            return 
+        if name:
+            output_name = f"{name}.mp4"
+        else:
+            output_name = f"{name}-compilatie.mp4"       
         console.print(f"\nStarten met het bouwen van {min_count} zin(nen)...")
         for word in available_clips:
             random.shuffle(available_clips[word])
@@ -78,18 +83,19 @@ def zeg(sentence, create, pre, post):
                 master_clip_plan.append(clip_to_add)
         create_supercut(
             master_clip_plan, 
-            output_filename="zeg-compilatie.mp4", 
+            output_filename=output_name, 
             pre=pre, 
             post=post
         )
 
 @cli.command()
 @click.option('--directory', '-d', default='videos', help='De map die doorzocht moet worden.')
-@click.option('--create', '-k', is_flag=True, help='Maak de compilatievideo.') 
+@click.option('--create', '-k', is_flag=True, help='Maak de compilatievideo.')
 @click.option('--pre', default=0.0, help='Seconden extra voor de start van de clip.')
 @click.option('--post', default=0.0, help='Seconden extra na het einde van de clip.')
+@click.option('--name', '-n', default="zoek", help='Geef een aangepaste bestandsnaam (zonder .mp4).') # NIEUW
 @click.argument('search_terms', nargs=-1)
-def zoek(directory, create, pre, post, search_terms):
+def zoek(directory, create, pre, post, name, search_terms):
     """Vindt en compileert hele segmenten waarin een zoekterm voorkomt."""
     if not search_terms:
         click.echo("Fout: Geef ten minste één zoekterm op.", err=True)
@@ -118,15 +124,20 @@ def zoek(directory, create, pre, post, search_terms):
             time.sleep(0.02) 
     console.print(f"--> [bold green]✓ {len(results)}[/bold green] resultaten gevonden!")
     if create:
-        create_supercut(results, output_filename="zoek-compilatie.mp4", pre=pre, post=post)
+        if name:
+            output_name = f"{name}.mp4"
+        else:
+            output_name = f"{name}-compilatie.mp4"
+        create_supercut(results, output_filename=output_name, pre=pre, post=post)
 
 @cli.command()
 @click.option('--pre', default=0.0, help='Seconden extra voor de start van de clip.')
 @click.option('--post', default=0.0, help='Seconden extra na het einde van de clip.')
 @click.option('--randomize', '-r', is_flag=True, help='Schud de gevonden clips in willekeurige volgorde.')
-@click.option('--create', '-k', is_flag=True, help='Maak de compilatievideo.') 
+@click.option('--create', '-k', is_flag=True, help='Maak de compilatievideo.')
+@click.option('--name', '-n', default="kut", help='Geef een aangepaste bestandsnaam (zonder .mp4).') # NIEUW
 @click.argument('search_terms', nargs=-1)
-def kut(pre, post, randomize, create, search_terms):
+def kut(pre, post, randomize, create, name, search_terms): 
     """Zoekt en compileert direct een video van exacte woorden/zinnen."""
     if not search_terms:
         console.print("[red]Fout: Geen zoektermen opgegeven.[/red]")
@@ -146,7 +157,11 @@ def kut(pre, post, randomize, create, search_terms):
             random.shuffle(results)
             logging.info("Clip-volgorde is willekeurig gemaakt.")
 
-        create_supercut(results, output_filename="kut-compilatie.mp4", pre=pre, post=post)
+        if name:
+            output_name = f"{name}.mp4"
+        else:
+            output_name = f"{name}-compilatie.mp4"
+        create_supercut(results, output_filename=output_name, pre=pre, post=post)
     else:
         console.print("\n-> Gebruik de [bold cyan]-k[/bold cyan] vlag om de video te genereren.")
 
