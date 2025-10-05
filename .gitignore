@@ -24,6 +24,7 @@ temp_clips/
 concat_list.txt
 kuts
 kuts/kuts-bak
+word_database.json
 # OS / Editor specifieke bestanden
 .DS_Store
 .vscode/
