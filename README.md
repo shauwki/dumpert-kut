@@ -154,6 +154,10 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 ```
 [![lange compilatie van 5 reeten](https://img.youtube.com/vi/Z3BwtRlV1JI/0.jpg)](https://www.youtube.com/watch?v=Z3BwtRlV1JI)
 ```bash
+./dumpert kut "nul reten" "een reet" "twee reten" "drie reten" "vier reten" "vijf reten" "nul reeten" "vier reeten" "vijf reeten" -kr --limit "25;100"
+```
+[![mixed reetings](https://img.youtube.com/vi/N4gVH1Bbh6M/0.jpg)](https://www.youtube.com/watch?v=N4gVH1Bbh6M)
+```bash
 ./dumpert kut "homo" -k -r
 ```
 [![homooooo, dit was een culturele keuze x ly](https://img.youtube.com/vi/PeWKg4v9n4k/0.jpg)](https://www.youtube.com/watch?v=PeWKg4v9n4k)
