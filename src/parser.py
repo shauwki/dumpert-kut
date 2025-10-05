@@ -5,7 +5,8 @@ import logging
 from rich.progress import track
 from rich.console import Console
 
-console = Console()
+console = Console(force_terminal=True)
+CACHE_FILE = 'word_database.json'
 
 def _search_segments(json_files, search_terms):
     """PRIORITEIT 1: Zoekt naar de exacte zin in het 'text' veld van segmenten."""
@@ -84,33 +85,52 @@ def find_phrases(root_dir, search_terms):
 
 def build_word_database(root_dir):
     """
-    Scant alle .json bestanden en bouwt een database van elk uniek woord
-    en alle bijbehorende clips (locatie, start, end).
-
-    Returns:
-        dict: Een dictionary zoals {'woord': [{'video_path': ..., 'start': ..., 'end': ...}, ...]}
+    Scant .json bestanden en bouwt een database van elk uniek woord.
+    Gebruikt een cache-bestand om herhaaldelijk scannen te versnellen.
     """
-    word_db = {}
-    console.print("-> Woorden-database aan het bouwen...")    
     json_files = [os.path.join(subdir, file) 
                   for subdir, _, files in os.walk(root_dir) 
                   for file in files if file.endswith('.json')]
-   
+    
+    # --- CACHE LOGICA: CONTROLE ---
+    cache_is_valid = False
+    if os.path.exists(CACHE_FILE):
+        cache_mtime = os.path.getmtime(CACHE_FILE)
+        # Zoek de meest recent gewijzigde transcriptie
+        latest_transcript_mtime = 0
+        if json_files:
+            latest_transcript_mtime = max(os.path.getmtime(f) for f in json_files)
+
+        if cache_mtime > latest_transcript_mtime:
+            console.print("-> [green]Actuele woorden-database cache gevonden. Laden...[/green]")
+            logging.info("Actuele cache gevonden, laden vanuit word_database.json.")
+            with open(CACHE_FILE, 'r', encoding='utf-8') as f:
+                word_db = json.load(f)
+            console.print(f"--> [bold green]✓ Database geladen met {len(word_db)} unieke woorden.[/bold green]")
+            return word_db
+
+    # --- VOLLEDIGE SCAN (als cache niet bestaat of verouderd is) ---
+    console.print("-> [yellow]Geen (actuele) cache gevonden. Woorden-database wordt volledig opnieuw gebouwd...[/yellow]")
+    
+    word_db = {}
     for json_path in track(json_files, description="[green]Woorden indexeren..."):
         video_path = json_path.replace('.json', '.mp4')
         if not os.path.exists(video_path): continue
+
         with open(json_path, 'r', encoding='utf-8') as f:
             try: data = json.load(f)
             except json.JSONDecodeError: continue
-       
+        
         all_words_in_file = [word for segment in data.get('segments', []) for word in segment.get('words', [])]
         
         for word_info in all_words_in_file:
             if 'word' in word_info and 'start' in word_info and 'end' in word_info:
                 word = word_info['word'].strip(".,!?").lower()
                 if not word: continue
+                
                 if word not in word_db:
                     word_db[word] = []
+                
                 word_db[word].append({
                     'video_path': video_path,
                     'start_timestamp': word_info['start'],
@@ -118,7 +138,13 @@ def build_word_database(root_dir):
                     'found_phrase': word
                 })
 
+    # --- CACHE LOGICA: OPSLAAN ---
     console.print(f"--> [bold green]✓ Database gebouwd met {len(word_db)} unieke woorden.[/bold green]")
+    console.print(f"-> Opslaan naar cache-bestand: {CACHE_FILE}...")
+    with open(CACHE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(word_db, f)
+    logging.info(f"Woorden-database opgeslagen in cache: {CACHE_FILE}")
+
     return word_db
 
 def find_precise_clips(root_dir, search_terms):
