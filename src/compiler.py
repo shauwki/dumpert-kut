@@ -30,9 +30,10 @@ def create_supercut(clips, output_filename="dumpert-kut.mp4", pre=0.0, post=0.0)
 
         for i, clip in enumerate(clips, 1):
             video_path = clip['video_path']
+            video_title = os.path.basename(os.path.dirname(video_path)).replace("_", " ")
             found_phrase = clip['found_phrase']
         
-            progress.update(task, description=f"[cyan]Clip {i}/{total_clips}: '{found_phrase}'[/cyan]")
+            progress.update(task, description=f"[cyan]Clip {i}/{total_clips}: '{found_phrase} in {video_title}'[/cyan]")
             logging.info(f"Clip {i}/{total_clips}: '{found_phrase}' in {os.path.basename(video_path)}")
 
             ts_filepath = os.path.join(temp_dir, f"clip_{i:04d}.ts")
