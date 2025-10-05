@@ -136,11 +136,11 @@ Voor vragen, suggesties of opmerkingen kun je een e-mail sturen naar [alshauwki@
 
 
 # Voorbeeld resultaten
-
+[here](https://www.geeksforgeeks.org/){:target="_blank"}
 ```bash
     ./dumpert kut "dumpertreten" -k -r
 ```
-[![Dumpert Reeten voorbeeld output](https://img.youtube.com/vi/7BvqmrFZrHE/0.jpg)](https://www.youtube.com/watch?v=7BvqmrFZrHE){:target="_blank" rel="noopener"}
+[![Dumpert Reeten voorbeeld output](https://img.youtube.com/vi/7BvqmrFZrHE/0.jpg)](https://www.youtube.com/watch?v=7BvqmrFZrHE){target="_blank" rel="noopener"}
 ```bash
     ./dumpert zeg "nul reten"
 ```
