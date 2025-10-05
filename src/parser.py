@@ -92,11 +92,9 @@ def build_word_database(root_dir):
                   for subdir, _, files in os.walk(root_dir) 
                   for file in files if file.endswith('.json')]
     
-    # --- CACHE LOGICA: CONTROLE ---
     cache_is_valid = False
     if os.path.exists(CACHE_FILE):
         cache_mtime = os.path.getmtime(CACHE_FILE)
-        # Zoek de meest recent gewijzigde transcriptie
         latest_transcript_mtime = 0
         if json_files:
             latest_transcript_mtime = max(os.path.getmtime(f) for f in json_files)
@@ -109,7 +107,6 @@ def build_word_database(root_dir):
             console.print(f"--> [bold green]✓ Database geladen met {len(word_db)} unieke woorden.[/bold green]")
             return word_db
 
-    # --- VOLLEDIGE SCAN (als cache niet bestaat of verouderd is) ---
     console.print("-> [yellow]Geen (actuele) cache gevonden. Woorden-database wordt volledig opnieuw gebouwd...[/yellow]")
     
     word_db = {}
@@ -138,7 +135,6 @@ def build_word_database(root_dir):
                     'found_phrase': word
                 })
 
-    # --- CACHE LOGICA: OPSLAAN ---
     console.print(f"--> [bold green]✓ Database gebouwd met {len(word_db)} unieke woorden.[/bold green]")
     console.print(f"-> Opslaan naar cache-bestand: {CACHE_FILE}...")
     with open(CACHE_FILE, 'w', encoding='utf-8') as f:
